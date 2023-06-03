@@ -18,10 +18,16 @@ func startRepl() {
 		if len(cleanedText) == 0 {
 			continue
 		}
-		
+
 		fmt.Println("echoing: ", cleanedText)
 	}
 
+}
+
+type cliCommand struct {
+	name string
+	description string
+	callback func()
 }
 
 func cleanInput(str string) []string {
