@@ -4,6 +4,10 @@ import "fmt"
 
 func callbackHelp() {
 	fmt.Println("Available commands:")
-	fmt.Println(" - help")
-	fmt.Println(" - exit")
+
+	availableCommands := getCommands()
+	for _, val := range availableCommands {
+		fmt.Printf(" - %s: %s\n", val.name, val.description)
+	}
+	fmt.Println()
 }
