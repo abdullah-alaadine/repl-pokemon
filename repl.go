@@ -18,7 +18,14 @@ func startRepl() {
 		if len(cleanedText) == 0 {
 			continue
 		}
-
+		commandName := cleanedText[0]
+		availableCommands := getCommands()
+		command, ok := availableCommands[commandName]
+		if !ok {
+			fmt.Println("Invalid Command: The '", commandName, "' command isn't available")
+			continue
+		}
+		command.callback()
 		fmt.Println("echoing: ", cleanedText)
 	}
 
