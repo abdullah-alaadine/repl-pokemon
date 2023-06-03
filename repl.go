@@ -30,6 +30,21 @@ type cliCommand struct {
 	callback func()
 }
 
+func getCommands() map[string]cliCommand {
+	return map[string]cliCommand{
+		"help": {
+			name: "help",
+			description: "Prints the help menu",
+			callback: func() {},
+		},
+		"exit": {
+			name: "exit",
+			description: "Turns off the program",
+			callback: func() {},
+		},
+	}
+}
+
 func cleanInput(str string) []string {
 	lowerCase := strings.ToLower(str)
 	words := strings.Fields(lowerCase)
