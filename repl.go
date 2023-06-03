@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func startRepl() {
@@ -17,4 +18,10 @@ func startRepl() {
 		fmt.Println("echoing: ", text)
 	}
 
+}
+
+func cleanInput(str string) []string {
+	lowerCase := strings.ToLower(str)
+	words := strings.Fields(lowerCase)
+	return words
 }
