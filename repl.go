@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func startRepl() {
+func startRepl(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for {
@@ -25,7 +25,7 @@ func startRepl() {
 			fmt.Println("Invalid Command: The '", commandName, "' command isn't available")
 			continue
 		}
-		command.callback()
+		command.callback(cfg)
 	}
 
 }
@@ -33,7 +33,7 @@ func startRepl() {
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*config) error
 }
 
 func getCommands() map[string]cliCommand {
