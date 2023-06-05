@@ -26,7 +26,6 @@ func startRepl() {
 			continue
 		}
 		command.callback()
-		fmt.Println("echoing: ", cleanedText)
 	}
 
 }
