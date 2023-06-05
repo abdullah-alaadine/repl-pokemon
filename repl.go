@@ -25,7 +25,10 @@ func startRepl(cfg *config) {
 			fmt.Println("Invalid Command: The '", commandName, "' command isn't available")
 			continue
 		}
-		command.callback(cfg)
+		err := command.callback(cfg)
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 
 }
