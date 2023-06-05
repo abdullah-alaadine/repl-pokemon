@@ -32,22 +32,27 @@ func startRepl() {
 }
 
 type cliCommand struct {
-	name string
+	name        string
 	description string
-	callback func() error
+	callback    func() error
 }
 
 func getCommands() map[string]cliCommand {
 	return map[string]cliCommand{
 		"help": {
-			name: "help",
+			name:        "help",
 			description: "Prints the help menu",
-			callback: func() error {},
+			callback:    callbackHelp,
+		},
+		"map": {
+			name:        "map",
+			description: "Lists some location areas",
+			callback:    callbackMap,
 		},
 		"exit": {
-			name: "exit",
+			name:        "exit",
 			description: "Turns off the program",
-			callback: func() error {},
+			callback:    callbackExit,
 		},
 	}
 }
