@@ -54,7 +54,8 @@ func TestReap(t *testing.T) {
 	keyOne := "key1"
 	cache.Add(keyOne, []byte("val1"))
 
-	time.Sleep(interval + time.Millisecond)
+	// if the performance of your machine isn't good, sleep this process for more time
+	time.Sleep(interval + time.Millisecond*3)
 
 	_, ok := cache.Get(keyOne)
 	if ok {
