@@ -23,3 +23,11 @@ func (c *Cache) Add(key string, val []byte) {
 		createdAt: time.Now().UTC(),
 	}
 }
+
+func (c *Cache) Get(key string) ([]byte, bool) {
+	cacheE, ok := c.cache[key]
+	if !ok {
+		return nil, false
+	}
+	return cacheE.val, true
+}
