@@ -13,6 +13,15 @@ func (c *Client) ListLocationAreas(pageURL *string) (LocationAreasResponse, erro
 	if pageURL != nil {
 		fullURL = *pageURL
 	}
+	cachedData, ok := c.cache.Get(fullURL)
+	if ok {
+		locationAreasResponse := LocationAreasResponse{}
+		err := json.Unmarshal(cachedData, &locationAreasResponse)
+		if err != nil {
+			return LocationAreasResponse{}, err
+		}
+		return locationAreasResponse, nil
+	}
 	req, err := http.NewRequest("GET", fullURL, nil)
 	if err != nil {
 		return LocationAreasResponse{}, err
@@ -35,5 +44,8 @@ func (c *Client) ListLocationAreas(pageURL *string) (LocationAreasResponse, erro
 	if err != nil {
 		return LocationAreasResponse{}, err
 	}
+
+	c.cache.Add(fullURL, data)
+
 	return locationAreasResponse, nil
 }
