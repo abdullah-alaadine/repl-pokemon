@@ -1,7 +1,6 @@
 package pokecache
 
 import (
-	"strconv"
 	"testing"
 )
 
