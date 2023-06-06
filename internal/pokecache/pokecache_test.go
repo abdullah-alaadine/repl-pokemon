@@ -1,6 +1,9 @@
 package pokecache
 
-import "testing"
+import (
+	"strconv"
+	"testing"
+)
 
 func TestCreateTest(t *testing.T) {
 	cache := NewCache()
@@ -12,12 +15,34 @@ func TestCreateTest(t *testing.T) {
 func TestAddGetCache(t *testing.T) {
 	cache := NewCache()
 
-	cache.Add("key1", []byte("val1"))
-	actual, ok := cache.Get("key1")
-	if !ok {
-		t.Errorf("key1 not found")
+	cases := []struct {
+		inputKey string
+		inputVal []byte
+	}{
+		{
+			inputKey: "key1",
+			inputVal: []byte("val1"),
+		},
+		{
+			inputKey: "key2",
+			inputVal: []byte("val2"),
+		},
+		{
+			inputKey: "key3",
+			inputVal: []byte("val3"),
+		},
 	}
-	if string(actual) != "val1" {
-		t.Errorf("value doesn't match")
+
+	for _, cs := range cases {
+		cache.Add(cs.inputKey, cs.inputVal)
+		actual, ok := cache.Get(cs.inputKey)
+		if !ok {
+			t.Errorf("%s not found", cs.inputKey)
+			continue
+		}
+		if string(actual) != "val1" {
+			t.Errorf("%s doesn't match %s", string(actual), string(cs.inputVal))
+			continue
+		}
 	}
 }
