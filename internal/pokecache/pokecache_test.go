@@ -40,7 +40,7 @@ func TestAddGetCache(t *testing.T) {
 			t.Errorf("%s not found", cs.inputKey)
 			continue
 		}
-		if string(actual) != "val1" {
+		if string(actual) != string(cs.inputVal) {
 			t.Errorf("%s doesn't match %s", string(actual), string(cs.inputVal))
 			continue
 		}
