@@ -1,4 +1,10 @@
-# Build file: ./repl-pokemon.exe
-# Please do not commit this file to the repository.
-# This file is generated during the build process and should only exist in the local environment.
-repl-pokemon.exe
+*.exe
+*.o
+*.out
+
+*.app
+
+*.elf
+
+
+vendor/
